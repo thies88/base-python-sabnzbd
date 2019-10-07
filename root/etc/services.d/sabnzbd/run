@@ -1,0 +1,5 @@
+#!/usr/bin/with-contenv bash
+
+exec \
+	s6-setuidgid sabnzbd /sabnzbd/SABnzbd.py \
+	-b 0 -f ${CONFIG} ${LISTEN}
