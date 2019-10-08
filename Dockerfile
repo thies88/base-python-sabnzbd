@@ -44,7 +44,7 @@ RUN apk add --no-cache --virtual temp build-base automake autoconf python-dev al
 RUN rm -rf /var/cache/apk/* /var/tmp/* /tmp/*
 
 # Define container settings.
-VOLUME ["/config", "/download"]
+VOLUME ["/config", "/downloads", "/incomplete-downloads"]
 
 EXPOSE 8080
 
