@@ -2,4 +2,4 @@
 
 exec \
 	s6-setuidgid sabnzbd /sabnzbd/SABnzbd.py \
-	-b 0 -f ${CONFIG} ${LISTEN}
+	-b 0 -f ${CONFIG} -s ${LISTEN}
