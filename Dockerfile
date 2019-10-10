@@ -6,6 +6,7 @@ MAINTAINER thies88
 #ENV SABNZBD_GID=""
 ENV CONFIG="/config/config.ini"
 ENV LISTEN="0.0.0.0:8080"
+ENV HTTPS="9090"
 ENV USER="sabnzbd"
 
 ENV VERSION 2.3.9
