@@ -32,7 +32,7 @@ echo "[DONE]"
 printf "Set permissions... "
 touch ${CONFIG}
 chown -R ${USER}: /opt
-chown ${USER}: /config /download $(dirname ${CONFIG}) ${CONFIG}
+chown ${USER}: /config /download /incomplete-downloads /nzb $(dirname ${CONFIG}) ${CONFIG}
 echo "[DONE]"
 
 #
