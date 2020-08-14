@@ -18,9 +18,7 @@ RUN addgroup -S -g 912 sabnzbd \
     && adduser -S -u 912 -G sabnzbd -h /sabnzbd -s /bin/sh sabnzbd
 
 # Install Dependencies
-RUN apk add --no-cache ca-certificates py-six py-cryptography \
-                       py-cffi py-openssl openssl unzip unrar p7zip python \
-                       py-pip \
+RUN apk add --no-cache ca-certificates openssl unzip unrar p7zip python \
 					   libgomp \
     && wget -O- https://codeload.github.com/sabnzbd/sabnzbd/tar.gz/$VERSION | tar -zx \
     && mv sabnzbd-*/* sabnzbd \
@@ -37,7 +35,7 @@ RUN apk add --no-cache --virtual temp build-base automake autoconf python-dev al
     && make install \
     && cd .. \
     && rm -rf par2cmdline-$PAR2 \
-    && pip --no-cache-dir install --upgrade cheetah sabyenc requests pynzb chardet apprise enum34 \
+    && pip --no-cache-dir install --upgrade cheetah sabyenc requests pynzb chardet apprise enum34 cffi six cryptography openssl \
     && apk del temp py-pip \
 	# create symbolic link so sabnzbd can find par2
 	&& ln -s /usr/local/bin/par2 /usr/bin/par2
