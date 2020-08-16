@@ -1,4 +1,4 @@
-FROM thies88/base-
+FROM thies88/base-python
 
 MAINTAINER thies88
 
