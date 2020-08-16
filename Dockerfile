@@ -24,7 +24,7 @@ RUN apk add --no-cache ca-certificates openssl unzip unrar p7zip py3-pip \
     && mv sabnzbd-*/* sabnzbd \
 	&& /usr/bin/python3 /sabnzbd/tools/make_mo.py
     
-RUN apk add --no-cache --virtual temp build-base automake autoconf python3-dev alpine-sdk \
+RUN apk add --no-cache --virtual temp build-base automake autoconf python3-dev py3-cffi  alpine-sdk \
     && wget -O- https://github.com/Parchive/par2cmdline/archive/v$PAR2.tar.gz | tar -zx \
     && cd par2cmdline-$PAR2 \
     && aclocal \
@@ -35,8 +35,8 @@ RUN apk add --no-cache --virtual temp build-base automake autoconf python3-dev a
     && make install \
     && cd .. \
     && rm -rf par2cmdline-$PAR2 \
-    && pip --no-cache-dir install --upgrade cheetah3 sabyenc3 requests pynzb chardet apprise enum34 cffi six cryptography \
-    && apk del temp py-pip \
+    && pip --no-cache-dir install --upgrade cheetah3 sabyenc3 requests pynzb chardet apprise enum34 six cryptography \
+    && apk del temp py3-pip \
 	# create symbolic link so sabnzbd can find par2
 	&& ln -s /usr/local/bin/par2 /usr/bin/par2
 
