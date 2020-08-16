@@ -18,7 +18,7 @@ RUN addgroup -S -g 912 sabnzbd \
     && adduser -S -u 912 -G sabnzbd -h /sabnzbd -s /bin/sh sabnzbd
 
 # Install Dependencies
-RUN apk add --no-cache ca-certificates openssl unzip unrar p7zip \
+RUN apk add --no-cache ca-certificates openssl unzip unrar p7zip libffi py3-cryptography py3-six py3-cffi \
 					   libgomp \
     # Download and build sabnzbd
     && wget -O- https://codeload.github.com/sabnzbd/sabnzbd/tar.gz/$VERSION | tar -zx \
@@ -26,7 +26,7 @@ RUN apk add --no-cache ca-certificates openssl unzip unrar p7zip \
 	&& /usr/bin/python3 /sabnzbd/tools/make_mo.py
 
 # Install temp dependencies for building and build Par2cmdline. Par2cmdline is needed for par2 verfification and repairing files
-RUN apk add --no-cache --virtual temp build-base automake autoconf python3-dev py3-cffi py3-pip libffi py3-cryptography py3-six alpine-sdk \
+RUN apk add --no-cache --virtual temp build-base automake autoconf python3-dev py3-pip alpine-sdk \
     && wget -O- https://github.com/Parchive/par2cmdline/archive/v$PAR2.tar.gz | tar -zx \
     && cd par2cmdline-$PAR2 \
     && aclocal \
