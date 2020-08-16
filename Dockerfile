@@ -24,7 +24,7 @@ RUN apk add --no-cache ca-certificates openssl unzip unrar p7zip py3-pip \
     && mv sabnzbd-*/* sabnzbd \
 	&& /usr/bin/python3 /sabnzbd/tools/make_mo.py
     
-RUN apk add --no-cache --virtual temp build-base automake autoconf python3-dev py3-cffi  alpine-sdk \
+RUN apk add --no-cache --virtual temp build-base automake autoconf python3-dev py3-cffi alpine-sdk \
     && wget -O- https://github.com/Parchive/par2cmdline/archive/v$PAR2.tar.gz | tar -zx \
     && cd par2cmdline-$PAR2 \
     && aclocal \
