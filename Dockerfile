@@ -18,7 +18,7 @@ RUN addgroup -S -g 912 sabnzbd \
     && adduser -S -u 912 -G sabnzbd -h /sabnzbd -s /bin/sh sabnzbd
 
 # Install Dependencies
-RUN apk add --no-cache ca-certificates openssl unzip unrar p7zip \
+RUN apk add --no-cache ca-certificates openssl unzip unrar p7zip py3-pip \
 					   libgomp \
     && wget -O- https://codeload.github.com/sabnzbd/sabnzbd/tar.gz/$VERSION | tar -zx \
     && mv sabnzbd-*/* sabnzbd \
