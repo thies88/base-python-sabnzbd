@@ -1,4 +1,4 @@
-FROM thies88/base-python
+FROM thies88/base-
 
 MAINTAINER thies88
 
@@ -22,9 +22,9 @@ RUN apk add --no-cache ca-certificates openssl unzip unrar p7zip \
 					   libgomp \
     && wget -O- https://codeload.github.com/sabnzbd/sabnzbd/tar.gz/$VERSION | tar -zx \
     && mv sabnzbd-*/* sabnzbd \
-	&& /usr/bin/python /sabnzbd/tools/make_mo.py
+	&& /usr/bin/python3 /sabnzbd/tools/make_mo.py
     
-RUN apk add --no-cache --virtual temp build-base automake autoconf python-dev alpine-sdk \
+RUN apk add --no-cache --virtual temp build-base automake autoconf python3-dev alpine-sdk \
     && wget -O- https://github.com/Parchive/par2cmdline/archive/v$PAR2.tar.gz | tar -zx \
     && cd par2cmdline-$PAR2 \
     && aclocal \
