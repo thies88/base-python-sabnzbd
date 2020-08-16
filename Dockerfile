@@ -20,10 +20,12 @@ RUN addgroup -S -g 912 sabnzbd \
 # Install Dependencies
 RUN apk add --no-cache ca-certificates openssl unzip unrar p7zip \
 					   libgomp \
+    # Download and build sabnzbd
     && wget -O- https://codeload.github.com/sabnzbd/sabnzbd/tar.gz/$VERSION | tar -zx \
     && mv sabnzbd-*/* sabnzbd \
 	&& /usr/bin/python3 /sabnzbd/tools/make_mo.py
-    
+
+# Install temp dependencies for building and build Par2cmdline. Par2cmdline is needed for par2 verfification and repairing files
 RUN apk add --no-cache --virtual temp build-base automake autoconf python3-dev py3-cffi py3-pip libffi py3-cryptography py3-six alpine-sdk \
     && wget -O- https://github.com/Parchive/par2cmdline/archive/v$PAR2.tar.gz | tar -zx \
     && cd par2cmdline-$PAR2 \
@@ -35,8 +37,10 @@ RUN apk add --no-cache --virtual temp build-base automake autoconf python3-dev p
     && make install \
     && cd .. \
     && rm -rf par2cmdline-$PAR2 \
+    # Install python dependencies for sabnzbd with pip
     && pip --no-cache-dir install --upgrade cheetah3 sabyenc3 requests pynzb chardet apprise enum34 feedparser \
-    && apk del temp py3-pip \
+    # delete temp packages needed for building
+    && apk del temp \
 	# create symbolic link so sabnzbd can find par2
 	&& ln -s /usr/local/bin/par2 /usr/bin/par2
 
@@ -49,6 +53,3 @@ EXPOSE 8080
 
 # add local files
 COPY root/ /
-
-
-
