@@ -35,7 +35,7 @@ RUN apk add --no-cache --virtual temp build-base automake autoconf python3-dev a
     && make install \
     && cd .. \
     && rm -rf par2cmdline-$PAR2 \
-    && pip --no-cache-dir install --upgrade cheetah sabyenc requests pynzb chardet apprise enum34 cffi six cryptography openssl \
+    && pip --no-cache-dir install --upgrade cheetah3 sabyenc3 requests pynzb chardet apprise enum34 cffi six cryptography \
     && apk del temp py-pip \
 	# create symbolic link so sabnzbd can find par2
 	&& ln -s /usr/local/bin/par2 /usr/bin/par2
