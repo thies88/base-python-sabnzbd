@@ -2,7 +2,7 @@
 
 Alpine based Image for creating docker container with [Sabnzbd](https://sabnzbd.org/) and monitored by s6-overlay.
 
-[![Sabnzbd](https://github.com/thies88/docker-container-images/blob/master/Sabnzbd/2020-08-17%2001_56_31-SABnzbd%20Config.png)
+[![Sabnzbd](https://github.com/thies88/docker-container-images/blob/master/Sabnzbd/2020-08-17%2001_56_31-SABnzbd%20Config.png)]
 
 #### weekly builds @Saturday at 3:00 (AM)
 * Rebuilds new base image from scratch @http://nl.alpinelinux.org/alpine (Alpine 3.12)
