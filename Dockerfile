@@ -10,7 +10,7 @@ ENV HTTPS="9090"
 ENV USER="sabnzbd"
 
 ENV VERSION 3.0.0
-ENV PAR2 0.8.0
+ENV PAR2 0.8.1
 #PYTHONIOENCODING=utf-8
 
 # Create user and group for SABnzbd.
