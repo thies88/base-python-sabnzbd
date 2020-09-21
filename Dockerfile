@@ -9,7 +9,7 @@ ENV LISTEN="0.0.0.0:8080"
 ENV HTTPS="9090"
 ENV USER="sabnzbd"
 
-ENV VERSION 3.0.0
+ENV VERSION 3.0.2
 ENV PAR2 0.8.1
 #PYTHONIOENCODING=utf-8
 
@@ -38,11 +38,20 @@ RUN apk add --no-cache --virtual temp build-base automake autoconf python3-dev p
     && cd .. \
     && rm -rf par2cmdline-$PAR2 \
     # Install python dependencies for sabnzbd with pip. 
-    && pip --no-cache-dir install --upgrade cheetah3 sabyenc3 requests pynzb apprise enum34 feedparser configobj cheroot==8.4.3 cherrypy portend notify2 \
+    #&& pip --no-cache-dir install --upgrade cheetah3 sabyenc3 requests pynzb apprise enum34 feedparser configobj cheroot==8.4.3 cherrypy portend notify2 \
+    &&  cd /sabnzbd && \
+ pip3 install -U pip && \
+ pip install -U --no-cache-dir \
+	apprise \
+	pynzb \
+#enum34 alpine specifiek
+	enum34 \
+	requests && \
+ pip install -U --no-cache-dir -r requirements.txt && \
     # delete temp packages needed for building
-    && apk del temp \
+    apk del temp && \
 	# create symbolic link so sabnzbd can find par2
-	&& ln -s /usr/local/bin/par2 /usr/bin/par2
+	ln -s /usr/local/bin/par2 /usr/bin/par2
 
 RUN rm -rf /var/cache/apk/* /var/tmp/* /tmp/*
 
