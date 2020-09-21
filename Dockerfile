@@ -38,8 +38,8 @@ RUN apk add --no-cache --virtual temp build-base automake autoconf python3-dev p
     && cd .. \
     && rm -rf par2cmdline-$PAR2 \
     # Install python dependencies for sabnzbd with pip. 
-    #&& pip --no-cache-dir install --upgrade cheetah3 sabyenc3 requests pynzb apprise enum34 feedparser configobj cheroot==8.4.3 cherrypy portend notify2 \
-    &&  cd /sabnzbd && \
+    # && pip --no-cache-dir install --upgrade cheetah3 sabyenc3 requests pynzb apprise enum34 feedparser configobj cheroot==8.4.3 cherrypy portend notify2 \
+    && cd /sabnzbd && \
  pip3 install -U pip && \
  pip install -U --no-cache-dir \
 	apprise \
