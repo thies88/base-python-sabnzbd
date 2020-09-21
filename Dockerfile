@@ -11,7 +11,7 @@ ENV USER="sabnzbd"
 
 ENV VERSION 3.0.2
 ENV PAR2 0.8.1
-#PYTHONIOENCODING=utf-8
+PYTHONIOENCODING=utf-8
 
 # Create user and group for SABnzbd.
 RUN addgroup -S -g 912 sabnzbd \
