@@ -45,7 +45,7 @@ RUN apk add --no-cache --virtual temp build-base automake autoconf python3-dev l
 	#cffi \
 	#enum34 \
 	requests && \
- pip install -U --no-cache-dir cheetah3>=3.0.0 sabyenc3>=4.0.0 feedparser>=6.0.0 cheroot==8.4.3 cryptography requests pynzb apprise enum34 configobj cherrypy portend chardet notify2 \
+ pip install -U --no-cache-dir -r requirementsalpine.txt \
     # Install python dependencies for sabnzbd with pip.
     #&& pip3 install -U pip \
     #&& pip install -U --no-cache-dir cheetah3>=3.0.0 sabyenc3>=4.0.0 feedparser>=6.0.0 cheroot==8.4.3 cryptography requests pynzb apprise enum34 configobj cherrypy portend chardet notify2 \
