@@ -38,7 +38,7 @@ RUN apk add --no-cache --virtual temp build-base automake autoconf python3-dev l
     && cd .. \
     && rm -rf par2cmdline-$PAR2 \
     # Install python dependencies for sabnzbd with pip.
-    && pip3 install -U pip \
+    #&& pip3 install -U pip \
     && pip --no-cache-dir install --upgrade cheetah3>=3.0.0 sabyenc3>=4.0.0 feedparser>=6.0.0 cheroot==8.4.3 cryptography requests pynzb apprise enum34 configobj cherrypy portend chardet notify2 \
     #&& cd /sabnzbd && \
  #pip3 install -U pip && \
@@ -50,7 +50,7 @@ RUN apk add --no-cache --virtual temp build-base automake autoconf python3-dev l
 	#requests && \
  #pip install -U --no-cache-dir -r requirements.txt && \
     # delete temp packages needed for building
-    apk del temp && \
+    && apk del temp && \
 	# create symbolic link so sabnzbd can find par2
 	ln -s /usr/local/bin/par2 /usr/bin/par2
 
