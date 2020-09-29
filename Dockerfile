@@ -44,6 +44,7 @@ RUN apk add --no-cache --virtual temp build-base automake autoconf python3-dev p
  pip install -U --no-cache-dir \
 	apprise \
 	pynzb \
+	cffi \
 	#enum34 \
 	requests && \
  pip install -U --no-cache-dir -r requirements.txt && \
