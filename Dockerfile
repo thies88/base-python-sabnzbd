@@ -24,6 +24,9 @@ RUN apk add --no-cache ca-certificates openssl-dev unzip unrar p7zip libffi py3-
     && wget -O- https://codeload.github.com/sabnzbd/sabnzbd/tar.gz/$VERSION | tar -zx \
     && mv sabnzbd-*/* sabnzbd \
 	&& /usr/bin/python3 /sabnzbd/tools/make_mo.py
+	
+# copy custom requirements file
+COPY root/requirementssabnzbd.txt /sabnzbd
 
 # Install temp dependencies for building and build Par2cmdline. Par2cmdline is needed for par2 verfification and repairing files
 RUN apk add --no-cache --virtual temp build-base automake autoconf python3-dev libffi-dev py3-pip alpine-sdk \
@@ -45,7 +48,7 @@ RUN apk add --no-cache --virtual temp build-base automake autoconf python3-dev l
 	#cffi \
 	#enum34 \
 	requests && \
- pip install -U --no-cache-dir -r /requirementssabnzbd.txt \
+ pip install -U --no-cache-dir -r requirementssabnzbd.txt \
     # Install python dependencies for sabnzbd with pip.
     #&& pip3 install -U pip \
     #&& pip install -U --no-cache-dir cheetah3>=3.0.0 sabyenc3>=4.0.0 feedparser>=6.0.0 cheroot==8.4.3 cryptography requests pynzb apprise enum34 configobj cherrypy portend chardet notify2 \
