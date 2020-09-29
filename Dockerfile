@@ -18,7 +18,7 @@ RUN addgroup -S -g 912 sabnzbd \
     && adduser -S -u 912 -G sabnzbd -h /sabnzbd -s /bin/sh sabnzbd
 
 # Install Dependencies
-RUN apk add --no-cache ca-certificates openssl-dev unzip unrar p7zip libffi-dev py3-cryptography py3-six py3-cffi py3-chardet py3-requests \
+RUN apk add --no-cache ca-certificates openssl-dev unzip unrar p7zip libffi py3-cryptography py3-six py3-cffi py3-chardet py3-requests \
 					   libgomp \
     # Download and build sabnzbd
     && wget -O- https://codeload.github.com/sabnzbd/sabnzbd/tar.gz/$VERSION | tar -zx \
@@ -26,7 +26,7 @@ RUN apk add --no-cache ca-certificates openssl-dev unzip unrar p7zip libffi-dev 
 	&& /usr/bin/python3 /sabnzbd/tools/make_mo.py
 
 # Install temp dependencies for building and build Par2cmdline. Par2cmdline is needed for par2 verfification and repairing files
-RUN apk add --no-cache --virtual temp build-base automake autoconf python3-dev py3-pip alpine-sdk \
+RUN apk add --no-cache --virtual temp build-base automake autoconf python3-dev libffi-dev py3-pip alpine-sdk \
     && wget -O- https://github.com/Parchive/par2cmdline/archive/v$PAR2.tar.gz | tar -zx \
     && cd par2cmdline-$PAR2 \
     && aclocal \
@@ -37,17 +37,18 @@ RUN apk add --no-cache --virtual temp build-base automake autoconf python3-dev p
     && make install \
     && cd .. \
     && rm -rf par2cmdline-$PAR2 \
-    # Install python dependencies for sabnzbd with pip. 
-    # && pip --no-cache-dir install --upgrade cheetah3 sabyenc3 requests pynzb apprise enum34 feedparser configobj cheroot==8.4.3 cherrypy portend notify2 \
-    && cd /sabnzbd && \
- pip3 install -U pip && \
- pip install -U --no-cache-dir \
-	apprise \
-	pynzb \
+    # Install python dependencies for sabnzbd with pip.
+    && pip3 install -U pip && \
+    && pip --no-cache-dir install --upgrade cheetah3>=3.0.0 sabyenc3>=4.0.0 feedparser>=6.0.0 cheroot==8.4.3 cryptography requests pynzb apprise enum34 configobj cherrypy portend chardet notify2 \
+    #&& cd /sabnzbd && \
+ #pip3 install -U pip && \
+ #pip install -U --no-cache-dir \
+	#apprise \
+	#pynzb \
 	#cffi \
 	#enum34 \
-	requests && \
- pip install -U --no-cache-dir -r requirements.txt && \
+	#requests && \
+ #pip install -U --no-cache-dir -r requirements.txt && \
     # delete temp packages needed for building
     apk del temp && \
 	# create symbolic link so sabnzbd can find par2
